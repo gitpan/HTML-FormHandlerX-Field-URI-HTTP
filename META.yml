@@ -25,4 +25,4 @@ requires:
   version: 0
 resources:
   repository: git://github.com/moltar/HTML-FormHandlerX-Field-URI-HTTP.git
-version: v0.1
+version: v0.2
