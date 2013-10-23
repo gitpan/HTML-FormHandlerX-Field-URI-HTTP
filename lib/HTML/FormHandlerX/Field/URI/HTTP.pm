@@ -2,47 +2,40 @@ package HTML::FormHandlerX::Field::URI::HTTP;
 
 # ABSTRACT: an HTTP URI field
 
-use Moose;
-use Moose::Util::TypeConstraints;
+use version; our $VERSION = version->declare('v0.3');
 
+use HTML::FormHandler::Moose;
 extends 'HTML::FormHandler::Field::Text';
-
-use version; our $VERSION = version->declare("v0.2");
 
 use URI;
 use Regexp::Common qw(URI);
 
 has 'scheme' => (
-    is         => 'rw',
-    isa        => 'RegexpRef',
-    required   => 1,
-    default    => sub { qr/https?/i },
+    is       => 'rw',
+    isa      => 'RegexpRef',
+    required => 1,
+    default  => sub {qr/https?/i},
 );
 
 has 'inflate' => (
-    is         => 'rw',
-    isa        => 'Bool',
-    default    => 1,
+    is      => 'rw',
+    isa     => 'Bool',
+    default => 1,
 );
 
-our $class_messages = {
-    'uri_http_invalid' => 'HTTP URI is invalid.',
-};
+our $class_messages = { 'uri_http_invalid' => 'HTTP URI is invalid.' };
 
 sub get_class_messages {
     my $self = shift;
-    return {
-        %{$self->next::method},
-        %{$class_messages},
-    };
+    return { %{ $self->next::method }, %{$class_messages}, };
 }
 
 sub validate {
     my $self = shift;
-    my $uri = $self->value;
+    my $uri  = $self->value;
 
     my $is_valid = 0;
-    my $regex = $RE{URI}{HTTP}{-scheme => $self->scheme};
+    my $regex = $RE{URI}{HTTP}{ -scheme => $self->scheme };
     if ($uri =~ m{^$regex$}) {
         $is_valid = 1;
         $self->_set_value($self->inflate ? URI->new($uri) : $uri);
@@ -57,7 +50,7 @@ __PACKAGE__->meta->make_immutable;
 use namespace::autoclean;
 1;
 
-
+__END__
 
 =pod
 
@@ -67,7 +60,7 @@ HTML::FormHandlerX::Field::URI::HTTP - an HTTP URI field
 
 =head1 VERSION
 
-version v0.2
+version v0.3
 
 =head1 SYNOPSIS
 
@@ -105,20 +98,15 @@ the L<URI> object. Default is true.
 
 =back
 
-=cut
-
 =head1 AUTHOR
 
 Roman F. <romanf@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2012 by Roman F..
+This software is copyright (c) 2013 by Roman F..
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
-
-__END__

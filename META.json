@@ -4,7 +4,7 @@
       "Roman F. <romanf@cpan.org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.300010, CPAN::Meta::Converter version 2.120630",
+   "generated_by" : "Dist::Zilla version 4.300039, CPAN::Meta::Converter version 2.132830",
    "license" : [
       "perl_5"
    ],
@@ -19,11 +19,16 @@
             "ExtUtils::MakeMaker" : "6.30"
          }
       },
+      "develop" : {
+         "requires" : {
+            "Test::More" : "0",
+            "Test::NoTabs" : "0"
+         }
+      },
       "runtime" : {
          "requires" : {
             "HTML::FormHandler::Field::Text" : "0",
-            "Moose" : "0",
-            "Moose::Util::TypeConstraints" : "0",
+            "HTML::FormHandler::Moose" : "0",
             "Regexp::Common" : "0",
             "URI" : "0",
             "namespace::autoclean" : "0",
@@ -32,9 +37,7 @@
       },
       "test" : {
          "requires" : {
-            "Test::More" : "0",
-            "strict" : "0",
-            "warnings" : "0"
+            "Test::More" : "0"
          }
       }
    },
@@ -46,6 +49,6 @@
          "web" : "https://github.com/moltar/HTML-FormHandlerX-Field-URI-HTTP"
       }
    },
-   "version" : "v0.2"
+   "version" : "v0.3"
 }
 
